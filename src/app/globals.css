@@ -13,6 +13,9 @@
 }
 
 @theme {
+  --breakpoint-desktop: 1024px;
+  --breakpoint-tablet: 768px;
+
   --color-violet-600: #7c3aed;
   --color-violet-100: #ede9fe;
   --color-rose-500: #f43f5e;
