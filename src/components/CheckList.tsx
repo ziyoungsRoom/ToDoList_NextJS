@@ -16,7 +16,7 @@ const CheckList = ({ text, isDone, setIsDone }: CheckListProps) => {
       onClick={onClick}
       className={`${
         isDone ? "bg-violet-100" : "bg-white"
-      } w-[527px] h-[50px] p-[8px] flex items-center gap-[12px] text-[16px] cursor-pointer rounded-full border border-[2px] border-slate-900`}
+      } w-full h-[50px] p-[8px] flex items-center gap-[12px] text-[16px] cursor-pointer rounded-full border border-[2px] border-slate-900 hover:scale-105 duration-300 ease-in-out`}
     >
       {isDone ? <DoneCheckbox /> : <DefaultCheckbox />}
 
