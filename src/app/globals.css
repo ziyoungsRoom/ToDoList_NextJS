@@ -17,7 +17,7 @@
   --font-HSSantokki: "HSSantokki", "sans-serif";
 
   --breakpoint-desktop: 1024px;
-  --breakpoint-tablet: 768px;
+  --breakpoint-tablet: 744px;
 
   --color-violet-600: #7c3aed;
   --color-violet-100: #ede9fe;
@@ -31,13 +31,6 @@
   --color-slate-300: #cbd5e1;
   --color-slate-200: #e2e8f0;
   --color-slate-100: #f1f5f9;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
