@@ -32,11 +32,27 @@ const MainPage = () => {
   const todoItems = items.filter((todo) => todo.isCompleted === false);
   const doneItems = items.filter((todo) => todo.isCompleted === true);
 
+  // 추가하기 버튼 클릭 시 todolist에 등록해요.
+  const PostItem = async () => {
+    // 유효성 검사
+    if (value.trim() === "") return alert("투두 이름을 입력해주세요 !");
+
+    const data = await PostTodo(value.trim());
+    if (data) setItems((prev) => [...prev, data]);
+
+    setValue("");
+  };
+
   return (
     <div className="w-full min-h-screen desktop:w-[80%] mx-auto mt-[20px] px-4 flex flex-col gap-12">
       <div className="w-full h-full flex gap-4">
         <SearchComponent value={value} setValue={setValue} />
-        <MainButton variants="Add" state="active" />
+        <MainButton
+          variants="Add"
+          state="active"
+          type="submit"
+          onClick={PostItem}
+        />
       </div>
       <div className="w-full flex flex-col items-center desktop:items-start desktop:flex-row gap-16 ">
         <section className="w-full min-w-[120px] h-full min-h-[240px] flex flex-col gap-4 ">
