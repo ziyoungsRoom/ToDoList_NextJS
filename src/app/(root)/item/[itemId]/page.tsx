@@ -1,20 +1,90 @@
+"use client";
+
+import { DeleteTodo, GetTodoDetail, PatchTodo } from "@/api/todoApi";
 import CheckListDetail from "@/components/CheckListDetail";
 import ImageInput from "@/components/ImageInput";
 import MainButton from "@/components/MainButton";
 import MemoInput from "@/components/MemoInput";
+import { ItemDetail } from "@/type/type";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ItemPage = () => {
+  const params = useParams();
+  const itemId = Number(params.itemId);
+  const router = useRouter();
+
+  const [todoDetail, setTodoDetail] = useState<ItemDetail>({
+    id: itemId,
+    name: "",
+    memo: "",
+    imageUrl: "",
+    isCompleted: false,
+  });
+
+  // 상세 페이지가 렌더링되면 이 id를 가진 todo 정보를 불러와요.
+  useEffect(() => {
+    const GetItemDetail = async (id: number) => {
+      const data = await GetTodoDetail(id);
+
+      if (data)
+        setTodoDetail({
+          id: itemId,
+          name: data.name,
+          memo: data.memo,
+          imageUrl: data.imageUrl,
+          isCompleted: data.isCompleted,
+        });
+    };
+
+    GetItemDetail(itemId);
+  }, [itemId]);
+
+  const onCheckHandler = () => {
+    setTodoDetail({ ...todoDetail, isCompleted: !todoDetail.isCompleted });
+  };
+
+  // 수정하기 버튼을 누르면 patch api를 호출해요.
+  const onEditHandler = async () => {
+    await PatchTodo(itemId, todoDetail);
+
+    router.push("/");
+  };
+
+  // 삭제하기 버튼을 누르면 delete api를 호출해요.
+  const onDeleteHandler = async () => {
+    await DeleteTodo(itemId);
+
+    router.push("/");
+  };
+
   return (
-    <div className="w-full desktop:w-[80%] min-w-[400px] h-full min-h-screen mx-auto bg-white px-[10%] py-[20px] flex flex-col items-center">
-      <CheckListDetail text="비타민 챙겨먹기!" isDone={false} />
-      <div className="w-full min-h-[311px] flex flex-col desktop:flex-row gap-8 py-4">
-        <ImageInput />
-        <MemoInput />
-      </div>
-      <div className="w-full flex justify-center desktop:justify-end  gap-4">
-        <MainButton variants="Edit" />
-        <MainButton variants="Delete" />
-      </div>
+    <div className="w-full h-full bg-slate-100">
+      {todoDetail.name && (
+        <div className="w-full desktop:w-[80%] tablet:max-w-[764px] min-w-[400px] h-full min-h-[calc(100vh-60px)] mx-auto bg-white px-[5%] py-[30px] flex flex-col items-center">
+          <CheckListDetail
+            text={todoDetail.name}
+            isDone={todoDetail.isCompleted}
+            onClick={onCheckHandler}
+          />
+          <div className="w-full min-h-[311px] flex flex-col desktop:flex-row gap-8 my-12">
+            <ImageInput
+              url={todoDetail.imageUrl}
+              todoDetail={todoDetail}
+              setTodoDetail={setTodoDetail}
+            />
+            <MemoInput
+              text={todoDetail.memo}
+              todoDetail={todoDetail}
+              setTodoDetail={setTodoDetail}
+            />
+          </div>
+          <div className="w-full flex justify-center desktop:justify-end  gap-4">
+            <MainButton variants="Edit" type="submit" onClick={onEditHandler} />
+            <MainButton variants="Delete" onClick={onDeleteHandler} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

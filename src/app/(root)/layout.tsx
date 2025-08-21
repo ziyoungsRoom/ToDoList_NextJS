@@ -5,7 +5,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="w-full flex flex-col min-h-screen ">
       <Header />
-      <div className="bg-slate-100 flex-grow mt-[60px]">{children}</div>
+      <div className="flex-grow mt-[60px]">{children}</div>
     </div>
   );
 };
