@@ -2,15 +2,13 @@ import DefaultCheckbox from "@/assets/DefaultCheckbox.svg";
 import DoneCheckbox from "@/assets/DoneCheckbox.svg";
 
 interface CheckListProps {
+  id: number;
   text: string;
   isDone: boolean;
-  setIsDone: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-const CheckList = ({ text, isDone, setIsDone }: CheckListProps) => {
-  const onClick: React.MouseEventHandler<HTMLElement> = () => {
-    setIsDone(!isDone);
-  };
+const CheckList = ({ id, text, isDone, onClick }: CheckListProps) => {
   return (
     <div
       onClick={onClick}

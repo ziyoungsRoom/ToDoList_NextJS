@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import SearchComponent from "@/components/SearchComponent";
 import MainButton from "@/components/MainButton";
 import { GetTodos } from "@/api/todoApi";
+import CheckList from "@/components/CheckList";
 
 const MainPage = () => {
   const [todoItems, setTodoItems] = useState<GetItem[]>([]);
@@ -41,11 +42,31 @@ const MainPage = () => {
           <Todo className="absolute top-0" />
           <div className="min-h-[240px] mt-[50px] desktop:h-full desktop:mt-0">
             {!todoItems.length && <Empty section={"todo"} />}
+            {todoItems.length &&
+              todoItems.map((todo) => (
+                <CheckList
+                  key={todo.id}
+                  id={todo.id}
+                  text={todo.name}
+                  isDone={todo.isCompleted}
+                />
+              ))}
           </div>
         </section>
         <section className="w-[50%] tablet:w-full min-w-[120px] h-full gap-4 ">
           <Done className="absolute desktop:top-0" />
-          <div>{!doneItems.length && <Empty section={"done"} />}</div>
+          <div>
+            {!doneItems.length && <Empty section={"done"} />}
+            {doneItems.length &&
+              doneItems.map((done) => (
+                <CheckList
+                  key={done.id}
+                  id={done.id}
+                  text={done.name}
+                  isDone={done.isCompleted}
+                />
+              ))}
+          </div>
         </section>
       </div>
     </div>
