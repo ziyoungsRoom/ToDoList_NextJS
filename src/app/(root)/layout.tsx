@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import { PropsWithChildren } from "react";
 
-const RootLayout = ({ children }: PropsWithChildren<{}>) => {
+const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="w-full flex flex-col min-h-screen ">
       <Header />
