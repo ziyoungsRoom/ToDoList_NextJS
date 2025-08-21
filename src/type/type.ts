@@ -6,7 +6,7 @@ export type GetItem = {
 
 export type ItemDetail = {
   id?: number;
-  tenantId?: String;
+  tenantId?: string;
   name: string;
   memo: string;
   imageUrl: string;
