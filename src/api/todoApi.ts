@@ -1,9 +1,21 @@
-import { PatchItem } from "@/type/type";
+import { ItemDetail } from "@/type/type";
 import { api } from "./api";
 
 export const GetTodos = async () => {
   try {
     const res = await api.get("/items");
+
+    return res?.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const GetTodoDetail = async (itemId: number) => {
+  try {
+    if (!itemId) throw new Error("Id is required");
+
+    const res = await api.get(`/items/${itemId}`);
 
     return res?.data;
   } catch (error) {
@@ -29,7 +41,7 @@ export const CheckTodo = async (itemId: number, isCompleted: boolean) => {
 
     const getResponse = await api.get(`/items/${itemId}`);
 
-    const payload: PatchItem = {
+    const payload: ItemDetail = {
       name: getResponse.data.name,
       memo: getResponse.data.memo === null ? "" : getResponse.data.memo,
       imageUrl:
