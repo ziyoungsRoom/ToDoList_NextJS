@@ -1,6 +1,6 @@
 "use client";
 
-import { GetTodoDetail, PatchTodo } from "@/api/todoApi";
+import { DeleteTodo, GetTodoDetail, PatchTodo } from "@/api/todoApi";
 import CheckListDetail from "@/components/CheckListDetail";
 import ImageInput from "@/components/ImageInput";
 import MainButton from "@/components/MainButton";
@@ -44,8 +44,16 @@ const ItemPage = () => {
     setTodoDetail({ ...todoDetail, isCompleted: !todoDetail.isCompleted });
   };
 
+  // 수정하기 버튼을 누르면 patch api를 호출해요.
   const onEditHandler = async () => {
     await PatchTodo(itemId, todoDetail);
+
+    router.push("/");
+  };
+
+  // 삭제하기 버튼을 누르면 delete api를 호출해요.
+  const onDeleteHandler = async () => {
+    await DeleteTodo(itemId);
 
     router.push("/");
   };
@@ -73,7 +81,7 @@ const ItemPage = () => {
           </div>
           <div className="w-full flex justify-center desktop:justify-end  gap-4">
             <MainButton variants="Edit" type="submit" onClick={onEditHandler} />
-            <MainButton variants="Delete" />
+            <MainButton variants="Delete" onClick={onDeleteHandler} />
           </div>
         </div>
       )}
