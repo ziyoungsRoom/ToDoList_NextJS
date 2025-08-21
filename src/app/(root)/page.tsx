@@ -32,7 +32,7 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen desktop:w-[80%] mx-auto mt-[20px] flex flex-col gap-12">
+    <div className="w-full min-h-screen desktop:w-[80%] mx-auto mt-[20px] px-4 flex flex-col gap-12">
       <div className="w-full h-full flex gap-4">
         <SearchComponent value={value} setValue={setValue} />
         <MainButton variants="Add" state="active" />
