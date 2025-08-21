@@ -66,13 +66,14 @@ const MainPage = () => {
                   id={todo.id}
                   text={todo.name}
                   isDone={todo.isCompleted}
+                  setItems={setItems}
                 />
               ))}
           </div>
         </section>
         <section className="w-full min-w-[120px] h-full min-h-[240px] flex flex-col gap-4 ">
           <Done />
-          <div>
+          <div className="w-full h-full flex flex-col gap-2">
             {!doneItems.length && <Empty section={"done"} />}
             {doneItems &&
               doneItems.map((done) => (
@@ -81,6 +82,7 @@ const MainPage = () => {
                   id={done.id}
                   text={done.name}
                   isDone={done.isCompleted}
+                  setItems={setItems}
                 />
               ))}
           </div>
