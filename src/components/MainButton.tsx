@@ -35,7 +35,7 @@ const MainButton = ({
       onClick={onClick}
       className={`${BUTTON_TYPE[variants]} ${
         isAdd ? `w-[56px] tablet:w-[168px]` : "w-[168px]"
-      }  h-[56px] text-[16px] cursor-pointer outline-none rounded-full border-slate-900 border-[2px] shadow-slate-900 shadow-[2px_4px_0] hover:scale-105 duration-300 ease-in-out`}
+      }  h-[56px] text-[16px] flex-shrink-0 box-content cursor-pointer outline-none rounded-full border-slate-900 border-[2px] shadow-slate-900 shadow-[2px_4px_0] hover:scale-105 duration-300 ease-in-out`}
     >
       <div className="flex items-center justify-center gap-[4px] leading-[16px]">
         {isAdd &&
