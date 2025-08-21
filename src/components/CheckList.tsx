@@ -43,7 +43,7 @@ const CheckList = ({ id, text, isDone, setItems }: CheckListProps) => {
       <button
         type="submit"
         onClick={onSubmitHandler}
-        className="z-20 cursor-pointer"
+        className="cursor-pointer"
       >
         {isDone ? <DoneCheckbox /> : <DefaultCheckbox />}
       </button>
