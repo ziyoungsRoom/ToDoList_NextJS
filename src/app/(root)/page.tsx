@@ -58,7 +58,7 @@ const MainPage = () => {
         <section className="w-full min-w-[120px] h-full min-h-[240px] flex flex-col gap-4 ">
           <Todo />
           <div className="w-full h-full flex flex-col gap-2">
-            {!todoItems && <Empty section={"todo"} />}
+            {!todoItems.length && <Empty section={"todo"} />}
             {todoItems &&
               todoItems.map((todo) => (
                 <CheckList
