@@ -1,9 +1,17 @@
+"use client";
+
 import ImageFile from "@/assets/ImageFile.svg";
+import SubButton from "./SubButton";
 
 const ImageInput = () => {
   return (
-    <div className="w-full h-full min-h-[240px] flex items-center justify-center border border-[2px] border-slate-200 bg-slate-100 rounded-3xl">
+    <div className="relative w-full h-full min-h-[311px] p-4 flex items-center justify-center border-dashed border-[2px] border-slate-200 bg-slate-50 rounded-3xl">
       <ImageFile />
+      <SubButton
+        variants="add"
+        onClick={() => {}}
+        className="absolute right-3 bottom-3"
+      />
     </div>
   );
 };
