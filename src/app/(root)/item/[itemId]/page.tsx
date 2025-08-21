@@ -13,7 +13,7 @@ const ItemPage = () => {
   const params = useParams();
   const itemId = Number(params.itemId);
 
-  const [itemInfo, setItemInfo] = useState<ItemDetail>({
+  const [todoDetail, setTodoDetail] = useState<ItemDetail>({
     id: itemId,
     name: "",
     memo: "",
@@ -27,7 +27,7 @@ const ItemPage = () => {
       const data = await GetTodoDetail(id);
 
       if (data)
-        setItemInfo({
+        setTodoDetail({
           id: itemId,
           name: data.name,
           memo: data.memo,
@@ -40,21 +40,25 @@ const ItemPage = () => {
   }, [itemId]);
 
   const onCheckHandler = () => {
-    setItemInfo({ ...itemInfo, isCompleted: !itemInfo.isCompleted });
+    setTodoDetail({ ...todoDetail, isCompleted: !todoDetail.isCompleted });
   };
 
   return (
     <div className="w-full h-full bg-slate-100">
-      {itemInfo.name && (
+      {todoDetail.name && (
         <div className="w-full desktop:w-[80%] tablet:max-w-[764px] min-w-[400px] h-full min-h-[calc(100vh-60px)] mx-auto bg-white px-[5%] py-[30px] flex flex-col items-center">
           <CheckListDetail
-            text={itemInfo.name}
-            isDone={itemInfo.isCompleted}
+            text={todoDetail.name}
+            isDone={todoDetail.isCompleted}
             onClick={onCheckHandler}
           />
           <div className="w-full min-h-[311px] flex flex-col desktop:flex-row gap-8 my-12">
-            <ImageInput url={itemInfo.imageUrl} setItemInfo={setItemInfo} />
-            <MemoInput text={itemInfo.memo} />
+            <ImageInput
+              url={todoDetail.imageUrl}
+              todoDetail={todoDetail}
+              setTodoDetail={setTodoDetail}
+            />
+            <MemoInput text={todoDetail.memo} />
           </div>
           <div className="w-full flex justify-center desktop:justify-end  gap-4">
             <MainButton variants="Edit" />
