@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# [![Do it;](/src/assets/LogoLarge.svg)](https://to-do-list-next-js-virid.vercel.app/)
 
-## Getting Started
+Todo List 애플리케이션으로, Next.js와 React 훅을 활용하여 구현했습니다.
 
-First, run the development server:
+### 🚀 주요 기능
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 할 일 추가 / 완료 처리 / 수정 / 삭제
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 진행 중/완료된 할 일 구분 표시
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 할 일 상세 페이지에서 메모 및 이미지 첨부 가능
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 반응형 레이아웃 지원
 
-## Learn More
+### ✨ 구현 내용
 
-To learn more about Next.js, take a look at the following resources:
+- 컬러 시스템 및 공용 컴포넌트 구현
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **할 일 목록 페이지 : `/`**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  - 목록 조회 및 상태별 분리
 
-## Deploy on Vercel
+  - 할 일 추가
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **할 일 상세 페이지 : `/items/{itemId}`**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  - 이름, 상태, 메모, 이미지 수정 가능
+
+  - 수정 완료 시 목록 페이지로 이동
+
+  - 삭제 기능 제공
+
+### 🛠️ 기술 스택
+
+**Framework:** Next.js
+
+**Language:** TypeScript / JavaScript
+
+**Styling:** Tailwind CSS
