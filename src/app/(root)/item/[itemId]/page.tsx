@@ -1,17 +1,18 @@
 "use client";
 
-import { GetTodoDetail } from "@/api/todoApi";
+import { GetTodoDetail, PatchTodo } from "@/api/todoApi";
 import CheckListDetail from "@/components/CheckListDetail";
 import ImageInput from "@/components/ImageInput";
 import MainButton from "@/components/MainButton";
 import MemoInput from "@/components/MemoInput";
 import { ItemDetail } from "@/type/type";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ItemPage = () => {
   const params = useParams();
   const itemId = Number(params.itemId);
+  const router = useRouter();
 
   const [todoDetail, setTodoDetail] = useState<ItemDetail>({
     id: itemId,
@@ -43,6 +44,12 @@ const ItemPage = () => {
     setTodoDetail({ ...todoDetail, isCompleted: !todoDetail.isCompleted });
   };
 
+  const onEditHandler = async () => {
+    await PatchTodo(itemId, todoDetail);
+
+    router.push("/");
+  };
+
   return (
     <div className="w-full h-full bg-slate-100">
       {todoDetail.name && (
@@ -58,10 +65,14 @@ const ItemPage = () => {
               todoDetail={todoDetail}
               setTodoDetail={setTodoDetail}
             />
-            <MemoInput text={todoDetail.memo} />
+            <MemoInput
+              text={todoDetail.memo}
+              todoDetail={todoDetail}
+              setTodoDetail={setTodoDetail}
+            />
           </div>
           <div className="w-full flex justify-center desktop:justify-end  gap-4">
-            <MainButton variants="Edit" />
+            <MainButton variants="Edit" type="submit" onClick={onEditHandler} />
             <MainButton variants="Delete" />
           </div>
         </div>

@@ -35,6 +35,23 @@ export const PostTodo = async (value: string) => {
   }
 };
 
+export const PatchTodo = async (itemId: number, todoDetail: ItemDetail) => {
+  try {
+    const payload: ItemDetail = {
+      name: todoDetail.name,
+      memo: todoDetail.memo === null ? "" : todoDetail.memo,
+      imageUrl: todoDetail.imageUrl === null ? "" : todoDetail.imageUrl,
+      isCompleted: todoDetail.isCompleted,
+    };
+
+    const res = await api.patch(`/items/${itemId}`, payload);
+
+    return res?.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const CheckTodo = async (itemId: number, isCompleted: boolean) => {
   try {
     if (!itemId) throw new Error("Id is required");
