@@ -32,17 +32,17 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className="w-full desktop:w-[80%] mx-auto mt-[20px] flex flex-col gap-12">
-      <div className="w-full flex gap-4">
+    <div className="w-full min-h-screen desktop:w-[80%] mx-auto mt-[20px] flex flex-col gap-12">
+      <div className="w-full h-full flex gap-4">
         <SearchComponent value={value} setValue={setValue} />
         <MainButton variants="Add" state="active" />
       </div>
-      <div className="relative w-full flex flex-col items-center desktop:flex-row gap-16 ">
-        <section className=" w-[50%] tablet:w-full min-w-[120px] h-full gap-4 ">
-          <Todo className="absolute top-0" />
-          <div className="min-h-[240px] mt-[50px] desktop:h-full desktop:mt-0">
+      <div className="w-full flex flex-col items-center desktop:items-start desktop:flex-row gap-16 ">
+        <section className="w-full min-w-[120px] h-full flex flex-col gap-4 ">
+          <Todo />
+          <div className="w-full h-full">
             {!todoItems.length && <Empty section={"todo"} />}
-            {todoItems.length &&
+            {todoItems &&
               todoItems.map((todo) => (
                 <CheckList
                   key={todo.id}
@@ -53,11 +53,11 @@ const MainPage = () => {
               ))}
           </div>
         </section>
-        <section className="w-[50%] tablet:w-full min-w-[120px] h-full gap-4 ">
-          <Done className="absolute desktop:top-0" />
+        <section className="w-full min-w-[120px] h-full flex flex-col gap-4 ">
+          <Done />
           <div>
             {!doneItems.length && <Empty section={"done"} />}
-            {doneItems.length &&
+            {doneItems &&
               doneItems.map((done) => (
                 <CheckList
                   key={done.id}
