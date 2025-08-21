@@ -9,6 +9,7 @@ import SearchComponent from "@/components/SearchComponent";
 import MainButton from "@/components/MainButton";
 import { GetTodos } from "@/api/todoApi";
 import CheckList from "@/components/CheckList";
+import { GetItem } from "@/type/type";
 
 const MainPage = () => {
   const [todoItems, setTodoItems] = useState<GetItem[]>([]);
