@@ -8,10 +8,9 @@ interface CheckListProps {
   id: number;
   text: string;
   isDone: boolean;
-  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-const CheckList = ({ id, text, isDone, onClick }: CheckListProps) => {
+const CheckList = ({ id, text, isDone }: CheckListProps) => {
   const router = useRouter();
 
   const onClickHandler = () => {
